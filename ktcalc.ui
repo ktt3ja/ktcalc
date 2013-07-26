@@ -53,16 +53,6 @@
      <string>=</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>271</width>
-      <height>51</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QPushButton" name="dotButton">
     <property name="geometry">
      <rect>
@@ -89,7 +79,7 @@
      <string>MR</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="mmButton">
+   <widget class="QPushButton" name="mpButton">
     <property name="geometry">
      <rect>
       <x>173</x>
@@ -99,7 +89,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>M-</string>
+     <string>M+</string>
     </property>
    </widget>
    <widget class="QPushButton" name="oneButton">
@@ -271,7 +261,7 @@
      <string>%</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="mpButton">
+   <widget class="QPushButton" name="msButton">
     <property name="geometry">
      <rect>
       <x>119</x>
@@ -281,7 +271,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>M+</string>
+     <string>MS</string>
     </property>
    </widget>
    <widget class="QPushButton" name="threeButton">
@@ -349,6 +339,30 @@
      <string>×</string>
     </property>
    </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>271</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -359,6 +373,12 @@
      <height>25</height>
     </rect>
    </property>
+   <widget class="QMenu" name="aboutMenu">
+    <property name="title">
+     <string>About</string>
+    </property>
+   </widget>
+   <addaction name="aboutMenu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
