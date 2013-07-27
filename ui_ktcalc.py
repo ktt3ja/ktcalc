@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ktcalc.ui'
 #
-# Created: Fri Jul 26 02:31:54 2013
+# Created: Sat Jul 27 06:44:00 2013
 #      by: pyside-uic 0.2.14 running on PySide 1.1.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -16,10 +16,10 @@ class Ui_MainWindow(object):
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.inverseButton = QtGui.QPushButton(self.centralwidget)
-        self.inverseButton.setGeometry(QtCore.QRect(227, 145, 55, 40))
+        self.inverseButton.setGeometry(QtCore.QRect(227, 106, 55, 40))
         self.inverseButton.setObjectName("inverseButton")
         self.clearButton = QtGui.QPushButton(self.centralwidget)
-        self.clearButton.setGeometry(QtCore.QRect(227, 184, 55, 40))
+        self.clearButton.setGeometry(QtCore.QRect(227, 145, 55, 40))
         self.clearButton.setObjectName("clearButton")
         self.equalButton = QtGui.QPushButton(self.centralwidget)
         self.equalButton.setGeometry(QtCore.QRect(227, 223, 55, 40))
@@ -69,9 +69,6 @@ class Ui_MainWindow(object):
         self.sqrtButton = QtGui.QPushButton(self.centralwidget)
         self.sqrtButton.setGeometry(QtCore.QRect(227, 67, 55, 40))
         self.sqrtButton.setObjectName("sqrtButton")
-        self.percentButton = QtGui.QPushButton(self.centralwidget)
-        self.percentButton.setGeometry(QtCore.QRect(227, 106, 55, 40))
-        self.percentButton.setObjectName("percentButton")
         self.msButton = QtGui.QPushButton(self.centralwidget)
         self.msButton.setGeometry(QtCore.QRect(119, 67, 55, 40))
         self.msButton.setObjectName("msButton")
@@ -102,6 +99,9 @@ class Ui_MainWindow(object):
         self.lineEdit.setFont(font)
         self.lineEdit.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.lineEdit.setObjectName("lineEdit")
+        self.clearEntryButton = QtGui.QPushButton(self.centralwidget)
+        self.clearEntryButton.setGeometry(QtCore.QRect(227, 184, 55, 40))
+        self.clearEntryButton.setObjectName("clearEntryButton")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 291, 25))
@@ -137,12 +137,12 @@ class Ui_MainWindow(object):
         self.fiveButton.setText(QtGui.QApplication.translate("MainWindow", "5", None, QtGui.QApplication.UnicodeUTF8))
         self.fourButton.setText(QtGui.QApplication.translate("MainWindow", "4", None, QtGui.QApplication.UnicodeUTF8))
         self.sqrtButton.setText(QtGui.QApplication.translate("MainWindow", "√", None, QtGui.QApplication.UnicodeUTF8))
-        self.percentButton.setText(QtGui.QApplication.translate("MainWindow", "%", None, QtGui.QApplication.UnicodeUTF8))
         self.msButton.setText(QtGui.QApplication.translate("MainWindow", "MS", None, QtGui.QApplication.UnicodeUTF8))
         self.threeButton.setText(QtGui.QApplication.translate("MainWindow", "3", None, QtGui.QApplication.UnicodeUTF8))
         self.nineButton.setText(QtGui.QApplication.translate("MainWindow", "9", None, QtGui.QApplication.UnicodeUTF8))
         self.zeroButton.setText(QtGui.QApplication.translate("MainWindow", "0", None, QtGui.QApplication.UnicodeUTF8))
         self.sevenButton.setText(QtGui.QApplication.translate("MainWindow", "7", None, QtGui.QApplication.UnicodeUTF8))
         self.multiplyButton.setText(QtGui.QApplication.translate("MainWindow", "×", None, QtGui.QApplication.UnicodeUTF8))
+        self.clearEntryButton.setText(QtGui.QApplication.translate("MainWindow", "CE", None, QtGui.QApplication.UnicodeUTF8))
         self.aboutMenu.setTitle(QtGui.QApplication.translate("MainWindow", "About", None, QtGui.QApplication.UnicodeUTF8))
 
