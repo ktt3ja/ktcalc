@@ -25,21 +25,35 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		self.divideButton.clicked.connect(lambda: self.enterBinOp(operator='/'))
 		self.equalButton.clicked.connect(self.enterEqual)
 		self.clearButton.clicked.connect(self.initStartState)
-		self.clearEntryButton.clicked.connect(lambda: self.lineEdit.setText('0'))
+		self.clearEntryButton.clicked.connect(self.enterClearEntry)
+
+	def doBinOp(self, operator, num1, num2):
+		if operator == '+':
+			return num1 + num2
+		elif operator == '-':
+			return num1 - num2
+		elif operator == '*':
+			return num1 * num2
+		elif operator == '/':
+			return num1 / num2
 
 	def doPendingBinOp(self):
 		num = Decimal(self.lineEdit.text())
 		if not self._binOperator:
-			self._storedOperand = Decimal(self.lineEdit.text())
-		elif self._binOperator == '+':
-			self._storedOperand += num
-		elif self._binOperator == '-':
-			self._storedOperand -= num
-		elif self._binOperator == '*':
-			self._storedOperand *= num
-		elif self._binOperator == '/':
-			self._storedOperand /= num
+			self._storedOperand = num
+		else:
+			self._storedOperand = self.doBinOp(self._binOperator, self._storedOperand, num)
 		return self._storedOperand
+
+	def setLastOp(self):
+		num = Decimal(self.lineEdit.text())
+		operator = self._binOperator
+		self._lastOp = lambda x: self.doBinOp(operator, x, num)
+
+	def doLastOp(self):
+		num = Decimal(self.lineEdit.text())
+		self._storedOperand = self._lastOp(num)
+		self.lineEdit.setText(unicode(self._storedOperand))
 
 	def enterBinOp(self, operator):
 		if self._state != 'compute':
@@ -72,18 +86,31 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		if self._state == 'accum' or self._state == 'point':
 			try:
 				result = self.doPendingBinOp()
+				self.setLastOp()
 				self.lineEdit.setText(unicode(result))
 				self._state = 'start'
+				self._binOperator = None
 			except:
 				self.lineEdit.setText('Error')
 				self._state = 'error'
-			self._binOperator = None
+		elif self._state == 'start':
+			try:
+				self.doLastOp()
+			except:
+				self.lineEdit.setText('Error')
+				self._state = 'error'
 
 	def initStartState(self):
 		self.lineEdit.setText('0')
 		self._state = 'start'
 		self._storedOperand = Decimal(0)
 		self._binOperator = None
+		self._lastOp = None
+
+	def enterClearEntry(self):
+		if self._state != 'error':
+			self.lineEdit.setText('0')
+			self._state = 'start'
 
 if __name__== '__main__':
 	app = QApplication(sys.argv)
