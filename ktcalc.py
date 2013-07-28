@@ -26,6 +26,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		self.equalButton.clicked.connect(self.enterEqual)
 		self.clearButton.clicked.connect(self.initStartState)
 		self.clearEntryButton.clicked.connect(self.enterClearEntry)
+		self.signButton.clicked.connect(self.enterSigned)
+		self.inverseButton.clicked.connect(self.enterInverse)
+		self.sqrtButton.clicked.connect(self.enterSqrt)
 
 	def doBinOp(self, operator, num1, num2):
 		if operator == '+':
@@ -51,19 +54,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		self._lastOp = lambda x: self.doBinOp(operator, x, num)
 
 	def doLastOp(self):
-		num = Decimal(self.lineEdit.text())
-		self._storedOperand = self._lastOp(num)
-		self.lineEdit.setText(unicode(self._storedOperand))
+		if self._lastOp:
+			num = Decimal(self.lineEdit.text())
+			self._storedOperand = self._lastOp(num)
+			self.lineEdit.setText(unicode(self._storedOperand))
+
+	def handleError(self):
+		self.lineEdit.setText('Error')
+		self._state = 'error'
 
 	def enterBinOp(self, operator):
 		if self._state != 'compute':
 			try:
 				result = self.doPendingBinOp()
+			except:
+				self.handleError()
+			else:
 				self.lineEdit.setText(unicode(result))
 				self._state = 'compute'
-			except:
-				self.lineEdit.setText('Error')
-				self._state = 'error'
 		self._binOperator = operator
 
 	def enterDigit(self, digit):
@@ -86,19 +94,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		if self._state == 'accum' or self._state == 'point':
 			try:
 				result = self.doPendingBinOp()
+			except:
+				self.handleError()
+			else:
 				self.setLastOp()
 				self.lineEdit.setText(unicode(result))
 				self._state = 'start'
 				self._binOperator = None
-			except:
-				self.lineEdit.setText('Error')
-				self._state = 'error'
 		elif self._state == 'start':
 			try:
 				self.doLastOp()
 			except:
-				self.lineEdit.setText('Error')
-				self._state = 'error'
+				self.handleError()
 
 	def initStartState(self):
 		self.lineEdit.setText('0')
@@ -111,6 +118,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		if self._state != 'error':
 			self.lineEdit.setText('0')
 			self._state = 'start'
+
+	def enterSigned(self):
+		num = Decimal(self.lineEdit.text())
+		num = num if num == 0 else num * -1
+		self.lineEdit.setText(unicode(num))
+
+	def enterInverse(self):
+		num = Decimal(self.lineEdit.text())
+		try:
+			num = 1 / num
+		except:
+			self.handleError()
+		else:
+			self.lineEdit.setText(unicode(num))
+
+	def enterSqrt(self):
+		num = Decimal(self.lineEdit.text()).sqrt()
+		self.lineEdit.setText(unicode(num))
 
 if __name__== '__main__':
 	app = QApplication(sys.argv)
