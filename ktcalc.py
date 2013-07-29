@@ -6,6 +6,7 @@ from ui_ktcalc import Ui_MainWindow
 class MainWindow(QMainWindow, Ui_MainWindow):
 	def __init__(self, parent=None):
 		super(MainWindow, self).__init__(parent)
+		self._MAXTEXTLEN = 23 
 		self.setupUi(self)
 		self.initStartState()
 		self.zeroButton.clicked.connect(lambda: self.enterDigit('0'))
@@ -78,10 +79,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		if self._state == 'start' or self._state == 'compute':
 			if digit != '0':
 				self.lineEdit.clear()
-				self.lineEdit.setText(self.lineEdit.text() + unicode(digit))
-				self._state = 'accum'
-			if digit == '.':
-				self._state = 'point'
+				if digit == '.':
+					self._state = 'point'
+					self.lineEdit.setText(unicode('0.'))
+				else:
+					self._state = 'accum'
+					self.lineEdit.setText(unicode(digit))
 		elif self._state == 'accum':
 			self.lineEdit.setText(self.lineEdit.text() + unicode(digit))
 			if digit == '.':
