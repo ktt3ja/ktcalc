@@ -31,6 +31,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		self.inverseButton.clicked.connect(self.enterInverse)
 		self.sqrtButton.clicked.connect(self.enterSqrt)
 
+	def displayText(self, text):
+		self.lineEdit.setText(unicode(text)[:23])
+
 	def doBinOp(self, operator, num1, num2):
 		if operator == '+':
 			return num1 + num2
@@ -58,10 +61,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		if self._lastOp:
 			num = Decimal(self.lineEdit.text())
 			self._storedOperand = self._lastOp(num)
-			self.lineEdit.setText(unicode(self._storedOperand))
+			self.displayText(self._storedOperand)
 
 	def handleError(self):
-		self.lineEdit.setText('Error')
+		self.displayText('Error')
 		self._state = 'error'
 
 	def enterBinOp(self, operator):
@@ -71,7 +74,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 			except:
 				self.handleError()
 			else:
-				self.lineEdit.setText(unicode(result))
+				self.displayText(result)
 				self._state = 'compute'
 		self._binOperator = operator
 
@@ -81,17 +84,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 				self.lineEdit.clear()
 				if digit == '.':
 					self._state = 'point'
-					self.lineEdit.setText(unicode('0.'))
+					self.displayText('0.')
 				else:
 					self._state = 'accum'
-					self.lineEdit.setText(unicode(digit))
+					self.displayText(digit)
 		elif self._state == 'accum':
-			self.lineEdit.setText(self.lineEdit.text() + unicode(digit))
+			self.displayText(self.lineEdit.text() + unicode(digit))
 			if digit == '.':
 				self._state = 'point'
 		elif self._state == 'point':
 			if digit != '.':
-				self.lineEdit.setText(self.lineEdit.text() + unicode(digit))
+				self.displayText(self.lineEdit.text() + unicode(digit))
 
 	def enterEqual(self):
 		if self._state == 'accum' or self._state == 'point':
@@ -101,7 +104,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 				self.handleError()
 			else:
 				self.setLastOp()
-				self.lineEdit.setText(unicode(result))
+				self.displayText(result)
 				self._state = 'start'
 				self._binOperator = None
 		elif self._state == 'start':
@@ -125,7 +128,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 	def enterSigned(self):
 		num = Decimal(self.lineEdit.text())
 		num = num if num == 0 else num * -1
-		self.lineEdit.setText(unicode(num))
+		self.displayText(num)
 
 	def enterInverse(self):
 		num = Decimal(self.lineEdit.text())
@@ -134,11 +137,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		except:
 			self.handleError()
 		else:
-			self.lineEdit.setText(unicode(num))
+			self.displayText(num)
 
 	def enterSqrt(self):
 		num = Decimal(self.lineEdit.text()).sqrt()
-		self.lineEdit.setText(unicode(num))
+		self.displayText(num)
 
 if __name__== '__main__':
 	app = QApplication(sys.argv)
