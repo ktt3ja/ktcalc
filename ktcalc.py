@@ -8,7 +8,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		super(MainWindow, self).__init__(parent)
 		self._MAXTEXTLEN = 23 
 		self.setupUi(self)
-		self.initStartState()
+		self.initStartState(initMemory=True)
 		self.zeroButton.clicked.connect(lambda: self.enterDigit('0'))
 		self.oneButton.clicked.connect(lambda: self.enterDigit('1'))
 		self.twoButton.clicked.connect(lambda: self.enterDigit('2'))
@@ -30,6 +30,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		self.signButton.clicked.connect(self.enterSigned)
 		self.inverseButton.clicked.connect(self.enterInverse)
 		self.sqrtButton.clicked.connect(self.enterSqrt)
+		self.mrButton.clicked.connect(self.enterMR)
+		self.mcButton.clicked.connect(self.enterMC)
+		self.mpButton.clicked.connect(self.enterMP)
+		self.mmButton.clicked.connect(lambda: self.enterMP(plus=False))
 
 	def displayText(self, text):
 		self.lineEdit.setText(unicode(text)[:23])
@@ -79,7 +83,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		self._binOperator = operator
 
 	def enterDigit(self, digit):
-		if self._state == 'start' or self._state == 'compute':
+		if self._state == 'start' or self._state == 'compute' or self._state == 'memory':
 			if digit != '0':
 				self.lineEdit.clear()
 				if digit == '.':
@@ -97,7 +101,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 				self.displayText(self.lineEdit.text() + unicode(digit))
 
 	def enterEqual(self):
-		if self._state == 'accum' or self._state == 'point':
+		if self._state == 'accum' or self._state == 'point' or self._state == 'memory':
 			try:
 				result = self.doPendingBinOp()
 			except:
@@ -113,12 +117,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 			except:
 				self.handleError()
 
-	def initStartState(self):
+	def initStartState(self, initMemory=False):
 		self.lineEdit.setText('0')
 		self._state = 'start'
 		self._storedOperand = Decimal(0)
 		self._binOperator = None
 		self._lastOp = None
+		if initMemory:
+			self._memory = Decimal(0)
 
 	def enterClearEntry(self):
 		if self._state != 'error':
@@ -142,6 +148,22 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 	def enterSqrt(self):
 		num = Decimal(self.lineEdit.text()).sqrt()
 		self.displayText(num)
+
+	def enterMR(self):
+		self.displayText(self._memory)
+		self._state = 'memory'
+
+	def enterMC(self):
+		self._memory = Decimal(0)
+
+	def enterMP(self, plus=True):
+		try:
+			num = Decimal(self.lineEdit.text())
+		except:
+			self.handleError()
+		else:
+			self._state = 'memory'
+			self._memory = self._memory + num if plus else self._memory - num
 
 if __name__== '__main__':
 	app = QApplication(sys.argv)

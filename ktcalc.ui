@@ -82,7 +82,7 @@
    <widget class="QPushButton" name="mpButton">
     <property name="geometry">
      <rect>
-      <x>173</x>
+      <x>119</x>
       <y>67</y>
       <width>55</width>
       <height>40</height>
@@ -248,17 +248,17 @@
      <string>√</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="msButton">
+   <widget class="QPushButton" name="mmButton">
     <property name="geometry">
      <rect>
-      <x>119</x>
+      <x>173</x>
       <y>67</y>
       <width>55</width>
       <height>40</height>
      </rect>
     </property>
     <property name="text">
-     <string>MS</string>
+     <string>M-</string>
     </property>
    </widget>
    <widget class="QPushButton" name="threeButton">

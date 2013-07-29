@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ktcalc.ui'
 #
-# Created: Sat Jul 27 06:44:00 2013
+# Created: Mon Jul 29 08:42:01 2013
 #      by: pyside-uic 0.2.14 running on PySide 1.1.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -31,7 +31,7 @@ class Ui_MainWindow(object):
         self.mrButton.setGeometry(QtCore.QRect(65, 67, 55, 40))
         self.mrButton.setObjectName("mrButton")
         self.mpButton = QtGui.QPushButton(self.centralwidget)
-        self.mpButton.setGeometry(QtCore.QRect(173, 67, 55, 40))
+        self.mpButton.setGeometry(QtCore.QRect(119, 67, 55, 40))
         self.mpButton.setObjectName("mpButton")
         self.oneButton = QtGui.QPushButton(self.centralwidget)
         self.oneButton.setGeometry(QtCore.QRect(11, 184, 55, 40))
@@ -69,9 +69,9 @@ class Ui_MainWindow(object):
         self.sqrtButton = QtGui.QPushButton(self.centralwidget)
         self.sqrtButton.setGeometry(QtCore.QRect(227, 67, 55, 40))
         self.sqrtButton.setObjectName("sqrtButton")
-        self.msButton = QtGui.QPushButton(self.centralwidget)
-        self.msButton.setGeometry(QtCore.QRect(119, 67, 55, 40))
-        self.msButton.setObjectName("msButton")
+        self.mmButton = QtGui.QPushButton(self.centralwidget)
+        self.mmButton.setGeometry(QtCore.QRect(173, 67, 55, 40))
+        self.mmButton.setObjectName("mmButton")
         self.threeButton = QtGui.QPushButton(self.centralwidget)
         self.threeButton.setGeometry(QtCore.QRect(119, 184, 55, 40))
         self.threeButton.setObjectName("threeButton")
@@ -137,7 +137,7 @@ class Ui_MainWindow(object):
         self.fiveButton.setText(QtGui.QApplication.translate("MainWindow", "5", None, QtGui.QApplication.UnicodeUTF8))
         self.fourButton.setText(QtGui.QApplication.translate("MainWindow", "4", None, QtGui.QApplication.UnicodeUTF8))
         self.sqrtButton.setText(QtGui.QApplication.translate("MainWindow", "√", None, QtGui.QApplication.UnicodeUTF8))
-        self.msButton.setText(QtGui.QApplication.translate("MainWindow", "MS", None, QtGui.QApplication.UnicodeUTF8))
+        self.mmButton.setText(QtGui.QApplication.translate("MainWindow", "M-", None, QtGui.QApplication.UnicodeUTF8))
         self.threeButton.setText(QtGui.QApplication.translate("MainWindow", "3", None, QtGui.QApplication.UnicodeUTF8))
         self.nineButton.setText(QtGui.QApplication.translate("MainWindow", "9", None, QtGui.QApplication.UnicodeUTF8))
         self.zeroButton.setText(QtGui.QApplication.translate("MainWindow", "0", None, QtGui.QApplication.UnicodeUTF8))
