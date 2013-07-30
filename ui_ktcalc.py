@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ktcalc.ui'
 #
-# Created: Mon Jul 29 08:42:01 2013
+# Created: Tue Jul 30 08:18:22 2013
 #      by: pyside-uic 0.2.14 running on PySide 1.1.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -98,6 +98,7 @@ class Ui_MainWindow(object):
         font.setPointSize(15)
         self.lineEdit.setFont(font)
         self.lineEdit.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.lineEdit.setReadOnly(True)
         self.lineEdit.setObjectName("lineEdit")
         self.clearEntryButton = QtGui.QPushButton(self.centralwidget)
         self.clearEntryButton.setGeometry(QtCore.QRect(227, 184, 55, 40))
