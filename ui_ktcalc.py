@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ktcalc.ui'
 #
-# Created: Tue Jul 30 08:18:22 2013
+# Created: Wed Jul 31 10:35:48 2013
 #      by: pyside-uic 0.2.14 running on PySide 1.1.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -107,19 +107,21 @@ class Ui_MainWindow(object):
         self.menubar = QtGui.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 291, 25))
         self.menubar.setObjectName("menubar")
-        self.aboutMenu = QtGui.QMenu(self.menubar)
-        self.aboutMenu.setObjectName("aboutMenu")
+        self.fileMenu = QtGui.QMenu(self.menubar)
+        self.fileMenu.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
+        self.fileMenu.setAcceptDrops(True)
+        self.fileMenu.setObjectName("fileMenu")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-        self.menubar.addAction(self.aboutMenu.menuAction())
+        self.menubar.addAction(self.fileMenu.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "MainWindow", None, QtGui.QApplication.UnicodeUTF8))
+        MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "ktcalc", None, QtGui.QApplication.UnicodeUTF8))
         self.inverseButton.setText(QtGui.QApplication.translate("MainWindow", "1/x", None, QtGui.QApplication.UnicodeUTF8))
         self.clearButton.setText(QtGui.QApplication.translate("MainWindow", "C", None, QtGui.QApplication.UnicodeUTF8))
         self.equalButton.setText(QtGui.QApplication.translate("MainWindow", "=", None, QtGui.QApplication.UnicodeUTF8))
@@ -145,5 +147,5 @@ class Ui_MainWindow(object):
         self.sevenButton.setText(QtGui.QApplication.translate("MainWindow", "7", None, QtGui.QApplication.UnicodeUTF8))
         self.multiplyButton.setText(QtGui.QApplication.translate("MainWindow", "×", None, QtGui.QApplication.UnicodeUTF8))
         self.clearEntryButton.setText(QtGui.QApplication.translate("MainWindow", "CE", None, QtGui.QApplication.UnicodeUTF8))
-        self.aboutMenu.setTitle(QtGui.QApplication.translate("MainWindow", "About", None, QtGui.QApplication.UnicodeUTF8))
+        self.fileMenu.setTitle(QtGui.QApplication.translate("MainWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
 

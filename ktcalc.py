@@ -1,6 +1,6 @@
 import sys
 from decimal import Decimal
-from PySide.QtGui import QMainWindow, QApplication, QShortcut
+from PySide.QtGui import QMainWindow, QApplication, QShortcut, QAction, QMessageBox
 from ui_ktcalc import Ui_MainWindow
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -86,6 +86,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		self.mcButton.clicked.connect(self.enterMC)
 		self.mpButton.clicked.connect(self.enterMP)
 		self.mmButton.clicked.connect(lambda: self.enterMP(plus=False))
+		self.fileMenu.addAction(QAction("About", self, triggered=self.about))
+
+	def about(self):
+		QMessageBox.about(self, "Calculator", "It's a calculator")
 
 	def displayText(self, text):
 		self.lineEdit.setText(unicode(text)[:23])
